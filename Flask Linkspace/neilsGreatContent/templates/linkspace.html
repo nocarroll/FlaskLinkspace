@@ -1,0 +1,82 @@
+<!doctype html>
+
+<html>
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='neilsGreatContent.css') }}">
+		<title>Neil's Great Content Page</title>
+		
+	</head>
+
+	<body>
+	
+	<header class="pageHeader">
+	
+		<h1>Neil's Great Content Page</h1>
+		
+	</header>
+	
+	<!-- Putting links page content in a container -->
+	<div class = "mainContent" id="linksContainer">
+	
+		
+		
+			<!-- 
+			Loop through siteData (already presented with most recent first) and build list of links/descriptions etc. 
+			into a separate article
+			-->
+			
+			{% for i in range(siteData|length) %}
+			<article class="postContainer">
+				
+				<header>
+					<!-- The URL and title -->
+					<h2><a href = {{siteData[i][1]}} >{{ siteData[i][2]}}</a></h2>
+					
+					<!-- The time and user -->
+					<h4>posted {{siteData[i][5].strftime("%a %b %d %Y at %H:%M:%S")}} by <span>{{siteData[i][4]}}</span></h4>
+				</header>
+				
+				
+				<!-- The description -->
+				<h3>Info:</h3>
+				<p>{{siteData[i][3]}}<p>
+				
+				
+				<footer>
+				
+						<h3><a href = {{"comments/" ~ siteData[i][0] ~ "/"}} >View the Comments</a><h3>
+				
+				</footer>	
+				
+			</article>	
+			{% endfor %}
+		
+		{% if loggedIn == true %}
+			<h2 class = "homeLink"><a href = "/postlink" >Add a post to the great content.</a></h2>
+		{% else %}
+			<h2 class = "homeLink"><a href = "/login">You must be logged in to post a link.</a></h2>
+		{% endif %}
+		<!-- Add a link to the site -->
+		
+		
+		
+	</div>		
+	<br>
+	<footer class="pageFooter">
+		{% if loggedIn == true %}
+			
+				<a href="/logout">Click here to logout as {{ user }}</a>
+			
+		{% else %}
+			
+				
+				<a href = "/login">Click here to login.</a>
+			
+			
+		{% endif %}
+		
+		</footer>
+	
+	</body>
+</html>	
+

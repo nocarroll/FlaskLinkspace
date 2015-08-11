@@ -1,0 +1,91 @@
+<!doctype html>
+
+<html>
+
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='neilsGreatContent.css') }}">
+		<title>Comments for {{currentPost[2]}}</title>
+
+	</head>
+
+	<body>
+	
+		<header class="pageHeader">
+		
+		<!-- The URL and title -->
+			<h1>Comments for <a href = {{currentPost[1]}}>{{currentPost[2]}}</a></h1>
+			
+		</header>
+	
+		<!-- Putting comments list in a container -->
+		<div class = "mainContent" id="commentsContainer">
+		
+			
+			
+			<!-- The time and user -->
+			<h2>Thread started {{currentPost[5]}} by <span>{{currentPost[4]}}</span></h2>
+			
+			<!-- 
+			Loop through comments (already presented with most recent first) and build list
+			into an article
+			-->
+			{% for i in commentThread %}
+			
+				<article class="commentContainer">
+					<header>
+						<h4>{{ i[3] }} said</h4>
+					</header>
+					
+					
+					<p>{{i[2]}}<p>
+					
+					<footer>
+						<h5>posted {{i[4].strftime("%a %b %d %Y at %H:%M:%S")}}</h5>
+					</footer>
+				
+				</article>
+			{% endfor %}
+			
+			{% if loggedIn == true %}
+				<!-- The form for adding comments -->
+				<form id = "commentForm" action = "" method = "POST">
+				
+					{{ user }}'s comment: <br>
+					<textarea rows = "5" cols = "41" wrap = "hard" name = "userComment" required></textarea><br>
+					<!--Posted by: <br>
+					<input type = "text" size = "40" name = "commenter" value = {{ user }} required><br>
+					-->
+					<br>
+					<input type = "submit" value = "Submit Comment">
+					<br>
+				</form>
+			{% else %}
+				<br/>
+				<br/>
+				<a href = "/login">You must be logged in to post a comment.</a>	
+				<br/>
+				<br/>
+			{% endif %}
+			<br>
+			<a class = "homeLink" href = "/linkspace" >Go back to the great content</a>
+		
+		</div>
+		
+		<br>
+		<footer class="pageFooter">
+		{% if loggedIn == true %}
+			
+				<a href="/logout">Click here to logout as {{ user }}</a>
+			
+		{% else %}
+			
+				
+				<a href = "/login">Click here to login.</a>
+			
+			
+		{% endif %}
+		
+		</footer>
+		
+	</body>	
+</html>

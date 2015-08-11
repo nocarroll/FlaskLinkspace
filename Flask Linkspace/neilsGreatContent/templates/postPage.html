@@ -1,0 +1,68 @@
+<!doctype html>
+
+<html>
+
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='neilsGreatContent.css') }}">
+		<title>Post Great Content</title>
+		
+	</head>
+	
+	<body>
+		<header class="pageHeader">
+		
+			<h1>Add to the great content</h1>
+			
+		</header>
+		
+		<div class = "mainContent" id="postFormContainer">
+			
+			{% if loggedIn == true %}
+			<p>Fill out the form below to add a link to the site. 
+			Any interesting or humourous content is perfect for this great content site</p>
+			
+				<!-- The form for adding link posts to the site-->
+				<form action ="/linkspace" method = "POST">
+					URL: <br>
+					<!-- Field for url-->
+					<input type = "url" size = "40" name = "url" required ><br>
+					Post Title: <br>
+					<!-- Field for post title-->
+					<input type = "text" size = "40" name = "siteName" required><br>
+					Description: <br>
+					<!-- Field for description-->
+					<textarea rows = "5" cols = "41" wrap = "hard" name = "info" required></textarea><br>
+					Posted by: {{ user }}
+					<br>
+					<input type = "submit">
+				</form>
+			{% else %}
+			
+				<h2 class = "homeLink"><a href = "/login">You have to login to post a link.</a></h2>
+			
+			
+			{% endif %}
+			
+		<br>
+			
+		<h2 class = "homeLink"><a href = "/linkspace">Go back to the links page.</a></h2>
+		
+		</div>
+		
+		<footer class="pageFooter">
+		{% if loggedIn == true %}
+			
+				<a href="/logout">Click here to logout as {{ user }}</a>
+			
+		{% else %}
+			
+				
+				<a href = "/login">Click here to login.</a>
+			
+			
+		{% endif %}
+		
+		</footer>
+	</body>
+
+</html>

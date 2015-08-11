@@ -1,0 +1,90 @@
+<!doctype html>
+
+<html>
+
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='neilsGreatContent.css') }}">
+		<title>Welcome to Neil's Great Content Page</title>
+
+	</head>
+
+	<body>
+	
+		<header class="pageHeader">
+		{% if loggedIn == true %}
+			<h1>Welcome back, {{ user }}</h1>
+		{% else %}
+			<h1>Why, hello there {{ user }}</h1>
+		{% endif %}
+		</header>
+	
+		<!-- Putting landing page content in a nice container -->
+		<div class = "mainContent" id="landingContainer">
+		
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+		
+			{% if loggedIn == true %}
+			
+				<!-- Links to the main page with the list of links -->
+				<h2 class = "homeLink"><a href = "/linkspace">Click here to see the best links from around the town.</a></h2>
+			
+			{% else %}
+			
+				<!-- Links to the main page with the list of links -->
+				<h2 class = "homeLink"><a href = "/login">You have to login to see the great content.</a></h2>
+			
+			
+			{% endif %}
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			
+		</div>
+		
+		<br>
+		
+		<footer class="pageFooter">
+		{% if loggedIn == true %}
+			
+				<a href="/logout">Click here to logout as {{ user }}</a>
+			
+		{% else %}
+			
+				
+				<a href = "/login">Click here to login.</a>
+			
+			
+		{% endif %}
+		
+		</footer>
+		
+	</body>
+	
+</html>

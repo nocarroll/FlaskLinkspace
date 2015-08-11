@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html>
+
+	<head>
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='neilsGreatContent.css') }}">
+		<title>Login Failed</title>
+		
+	</head>
+	
+	<body>
+		<header class="pageHeader">
+		
+			<h1>Login Failed</h1>
+			
+		</header>
+		
+		<div class = "mainContent" id="loginFormContainer">
+			
+			<p>Hmmm, please try to log in again</p>
+			
+			<!-- The form for adding link posts to the site-->
+			<form action ="/login" method = "POST">
+				<!-- Field for username-->
+				Username: <br>
+				<input type = "text" size = "40" name = "username" placeholder = "Your Username" required><br>
+				
+				<!-- Field for password-->
+				Password: <br>
+				<input type = "password" size = "40" name = "password" placeholder = "Your Password" required ><br>
+				
+				
+				
+				<br>
+				<input type = "submit">
+			</form>
+			
+		<br>
+			
+		
+		</div>
+		
+	</body>
+
+</html>
